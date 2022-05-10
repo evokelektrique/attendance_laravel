@@ -1,0 +1,15 @@
+node_modules/
+yarn - error.log
+/public/hot
+.phpunit.result.cache
+Homestead.json
+vendor
+vendor/
+npm-debug.log
+/vendor
+.git
+/public/storage
+Homestead.yaml
+/storage/*.key
+.env.backup
+node_modules
