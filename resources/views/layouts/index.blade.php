@@ -4,11 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield("title")</title>
+    <link rel="stylesheet" type="text/css" href="{{ asset("css/app.css") }}">
 </head>
-<body>
+<body dir="rtl" class="">
     <div class="container">
-        <p>You're a guest. <a href="{{ route('login') }}">Log in</a></p>
-        @yield("content")
+        @include("navbar")
+        <div class="mt-6">
+            @yield("content")
+        </div>
     </div>
 </body>
 </html>

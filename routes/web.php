@@ -12,6 +12,6 @@ Route::get('/', \Auth0\Laravel\Http\Controller\Stateful\Login::class)->name('log
 // Dashboard
 Route::middleware(["auth0.authenticate"])->group(function () {
     // Index
-    Route::view('/dashboard', "index");
+    Route::view('/dashboard', "dashboard");
 
 });
