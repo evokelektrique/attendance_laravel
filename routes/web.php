@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers;
 
 // Logout
 Route::get('/logout', \Auth0\Laravel\Http\Controller\Stateful\Logout::class)->name('logout');
@@ -13,5 +14,5 @@ Route::get('/', \Auth0\Laravel\Http\Controller\Stateful\Login::class)->name('log
 Route::middleware(["auth0.authenticate"])->group(function () {
     // Index
     Route::view('/dashboard', "dashboard");
-
+    Route::resource("dashboard/users", Controllers\UsersController::class);
 });

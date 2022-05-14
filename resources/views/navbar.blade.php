@@ -20,7 +20,7 @@
   <div id="header_navbar" class="navbar-menu">
     <div class="navbar-start">
       <a class="navbar-item" href="/">داشبورد</a>
-      <a class="navbar-item" href="/">کاربران</a>
+      <a class="navbar-item" href="{{ route("users.index") }}">کاربران</a>
       <a class="navbar-item" href="/">درس ها</a>
     </div>
 
@@ -29,12 +29,6 @@
       <div class="navbar-item">
         <a class="button is-danger" href="{{ route('logout') }}">
           خروج
-        </a>
-      </div>
-      @else
-      <div class="navbar-item">
-        <a class="button" href="{{ route('login') }}">
-          ورود
         </a>
       </div>
       @endauth
