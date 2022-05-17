@@ -11,8 +11,8 @@ Route::get('/auth0/callback', \Auth0\Laravel\Http\Controller\Stateful\Callback::
 Route::get('/', \Auth0\Laravel\Http\Controller\Stateful\Login::class)->name('login');
 
 // Dashboard
-Route::middleware(["auth0.authenticate"])->group(function () {
+Route::middleware(["auth0.authenticate"])->group(function() {
     // Index
-    Route::view('/dashboard', "dashboard");
+    Route::get('dashboard', [Controllers\DashboardController::class, "index"]);
     Route::resource("dashboard/users", Controllers\UsersController::class);
 });

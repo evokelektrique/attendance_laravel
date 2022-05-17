@@ -4,6 +4,9 @@
 
 @section("content")
 
+<pre><?php print_r(auth()->user()->email) ?></pre>
+
+
 {{-- Information --}}
 <p class="is-size-3 has-text-weight-bold">مشخصات کاربری</p>
 <div class="columns is-centered mt-6">
