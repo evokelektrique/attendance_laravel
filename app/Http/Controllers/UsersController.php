@@ -7,13 +7,19 @@ use App\Models\User;
 
 class UsersController extends Controller
 {
+    protected $model;
+
+    public function __construct(User $user) {
+        $this->model = $user;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index(User $user) {
-        $users = $user::all();
+        $users = $this->model::all();
         return view("users.index", ["users" => $users]);
     }
 
@@ -46,7 +52,8 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = $this->model->findOrFail($id);
+        return view("users.show", ["user" => $user]);
     }
 
     /**
@@ -57,7 +64,8 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = $this->model->findOrFail($id);
+        return view("users.edit", ["user" => $user]);
     }
 
     /**
@@ -80,6 +88,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = $this->model->find($id);
+        dd($user->name);
     }
 }

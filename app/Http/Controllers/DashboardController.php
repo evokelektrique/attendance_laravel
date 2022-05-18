@@ -22,6 +22,11 @@ class DashboardController extends Controller {
             "email" => $email
         ]);
 
+        // Check unverified users
+        if(!$user->verified) {
+            return view("unauthorized");
+        }
+
         return view("dashboard");
     }
 
