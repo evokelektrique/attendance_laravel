@@ -77,7 +77,18 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            "name" => "required",
+            "email" => "required",
+            "role" => "required",
+            "verified" => "required",
+        ];
+        $attributes = $this->validate($request, $rules);
+        // dd($attributes);
+        $this->model->where("id", $id)->update($attributes);
+
+
+        return redirect()->route("users.index");
     }
 
     /**

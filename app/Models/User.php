@@ -17,6 +17,10 @@ class User extends Model {
                 return "دانشجو";
                 break;
 
+            case 'admin':
+                return "مدیر کل";
+                break;
+
             default:
                 break;
         }
