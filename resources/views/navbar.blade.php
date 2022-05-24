@@ -20,7 +20,9 @@
   <div id="header_navbar" class="navbar-menu">
     <div class="navbar-start">
       <a class="navbar-item" href="/">داشبورد</a>
+      @if(App\Helper::can($user->id, "admin"))
       <a class="navbar-item" href="{{ route("users.index") }}">کاربران</a>
+      @endif
       <a class="navbar-item" href="/">درس ها</a>
     </div>
 

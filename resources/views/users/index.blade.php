@@ -37,7 +37,7 @@
                         "has-text-success" => $user->verified
                         ])>{{ $user->get_verified() }}</td>
                     <td data-label="تاریخ ثبت نام">
-                        <small class="has-text-grey is-abbr-like">{{ $user->created_at->toJalali()->format('d-m-Y') }}</small>
+                        <small class="has-text-grey is-abbr-like">{{ $user->created_at->toJalali()->format('Y-m-d') }}</small>
                     </td>
                     <td class="is-actions-cell">
                         <div class="buttons is-right">

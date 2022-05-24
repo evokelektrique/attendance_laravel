@@ -27,7 +27,7 @@ class DashboardController extends Controller {
             return view("unauthorized");
         }
 
-        return view("dashboard");
+        return view("dashboard", ["user" => $user]);
     }
 
 }
