@@ -20,10 +20,14 @@
   <div id="header_navbar" class="navbar-menu">
     <div class="navbar-start">
       <a class="navbar-item" href="/">داشبورد</a>
-      @if(App\Helper::can($user->id, "admin"))
+      @can("admin")
       <a class="navbar-item" href="{{ route("users.index") }}">کاربران</a>
-      @endif
-      <a class="navbar-item" href="/">درس ها</a>
+      @endcan
+
+      @can("admin")
+      <a class="navbar-item" href="{{ route("courses.index") }}">درس ها</a>
+      @endcan
+
     </div>
 
     <div class="navbar-end">

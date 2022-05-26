@@ -14,9 +14,11 @@ class UsersController extends Controller
     public function __construct(User $user) {
         $this->model = $user;
 
-        // Find current logged in user by his Email
-        $user_email = auth()->user()->email;
-        $this->user = $this->model->where("email", $user_email)->first();
+        if(auth()->check()) {
+            // Find current logged in user by his Email
+            $user_email = auth()->user()->email;
+            $this->user = $this->model->where("email", $user_email)->first();
+        }
     }
 
     /**
@@ -90,6 +92,11 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        if(!Helper::can($this->user->id, "admin")) {
+            return redirect()->route("dashboard.index");
+        }
+
         $rules = [
             "name" => "required",
             "email" => "required",
@@ -111,6 +118,10 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
+        if(!Helper::can($this->user->id, "admin")) {
+            return redirect()->route("dashboard.index");
+        }
+
         $user = $this->model->find($id);
         dd($user->name);
     }
