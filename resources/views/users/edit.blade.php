@@ -43,7 +43,7 @@
                     <div class="control">
                         <div class="select">
                             @php
-                            $roles = ["student" => "دانشجو", "admin" => "مدیر کل"];
+                            $roles = ["student" => "دانشجو", "admin" => "مدیر کل", "teacher" => "استاد"];
                             @endphp
                             <select name="role">
                                 @foreach($roles as $option_key => $option_value)

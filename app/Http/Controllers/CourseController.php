@@ -31,9 +31,9 @@ class CourseController extends Controller
     {
         $courses = $this->model::all();
 
-        if(!Helper::can($this->user->id, "admin")) {
-            return redirect()->route("dashboard.index");
-        }
+        // if(!Helper::can($this->user->id, "admin")) {
+        //     return redirect()->route("dashboard.index");
+        // }
 
         return view("courses.index", ["courses" => $courses]);
     }
@@ -45,7 +45,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        return view("courses.create");
     }
 
     /**
@@ -56,7 +56,22 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $rules = [
+            "name" => "required",
+            "unit" => "required",
+            "description" => "required",
+            "teacher_id" => "required",
+        ];
+
+        // Validate
+        $attributes = $this->validate($request, $rules);
+
+        // Save
+        $course = new $this->model($attributes);
+        $course->save();
+
+        return redirect()->route("courses.index");
     }
 
     /**
@@ -67,7 +82,11 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        //
+        $users = User::all()->where("verified", true)->where("role", "student");
+        $teachers = User::all()->where("verified", true)->where("role", "teacher");
+        $data = ["course" => $course, "users" => $users, "teachers" => $teachers];
+
+        return view("courses.show", $data);
     }
 
     /**
@@ -78,7 +97,7 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        //
+        return view("courses.edit", [ "course" => $course ]);
     }
 
     /**
@@ -90,7 +109,36 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
-        //
+        $rules = [
+            "name" => "required",
+            "unit" => "required",
+            "description" => "required",
+        ];
+
+        // Validate
+        $attributes = $this->validate($request, $rules);
+
+        $this->model->where("id", $course->id)->update($attributes);
+
+        return redirect()->route("courses.index");
+    }
+
+    public function update_users(Request $request, Course $course) {
+        $course->users()->detach();
+        $course_users = $request->get("course_users");
+        $course->users()->attach($course_users);
+
+        $message = "با موفقیت " . count($course_users) . " کاربر به درس مورد نظر اضافه شدند" ;
+        return redirect()->back()->with("success", $message);
+    }
+
+    public function update_teacher(Request $request, Course $course) {
+        $teacher_id = $request->get("teacher_id");
+        $course->teacher_id = $teacher_id;
+        $course->save();
+
+        $message = "استاد مورد نظر با موفقیت به درس اضافه شد";
+        return redirect()->back()->with("success_teacher", $message);
     }
 
     /**
@@ -103,4 +151,5 @@ class CourseController extends Controller
     {
         //
     }
+
 }

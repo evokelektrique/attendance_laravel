@@ -1,9 +1,12 @@
 @import "./bulma-rtl.min.css";
 @import "./bulma-responsive-tables.min.css";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
 @import "../fonts/vazir/Vazirmatn-RD-FD-font-face.css";
 
-body {
-    min-height: 1000px;
+body,
+input,
+button,
+textarea {
     font-family: "Vazirmatn RD FD";
 }
 
