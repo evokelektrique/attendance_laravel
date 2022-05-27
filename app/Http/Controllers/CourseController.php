@@ -45,7 +45,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        return view("courses.create");
     }
 
     /**
@@ -56,7 +56,21 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $rules = [
+            "name" => "required",
+            "unit" => "required",
+            "description" => "required",
+        ];
+
+        // Validate
+        $attributes = $this->validate($request, $rules);
+
+        // Save
+        $course = new $this->model($attributes);
+        $course->save();
+
+        return redirect()->route("courses.index");
     }
 
     /**
@@ -67,7 +81,8 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        //
+        $users = User::all()->where("verified", true);
+        return view("courses.show", ["course" => $course, "users" => $users]);
     }
 
     /**
@@ -93,6 +108,15 @@ class CourseController extends Controller
         //
     }
 
+    public function update_users(Request $request, Course $course) {
+        $course->users()->detach();
+        $course_users = $request->get("course_users");
+        $course->users()->attach($course_users);
+
+        $message = "با موفقیت " . count($course_users) . " کاربر به درس مورد نظر اضافه شدند" ;
+        return redirect()->back()->with("success", $message);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -103,4 +127,5 @@ class CourseController extends Controller
     {
         //
     }
+
 }

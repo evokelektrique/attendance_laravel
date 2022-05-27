@@ -23,4 +23,5 @@ Route::middleware(["auth0.authenticate"])->group(function() {
 
     // Courses
     Route::resource("dashboard/courses", Controllers\CourseController::class);
+    Route::post("dashboard/courses/{course}/update_users", [Controllers\CourseController::class, "update_users"])->name("course.update_users");
 });
