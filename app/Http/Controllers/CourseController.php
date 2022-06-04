@@ -61,7 +61,10 @@ class CourseController extends Controller
             "name" => "required",
             "unit" => "required",
             "description" => "required",
+<<<<<<< HEAD
             "teacher_id" => "required",
+=======
+>>>>>>> 12974a6c3b14b0a367d0d9647dfd294bb01fb326
         ];
 
         // Validate
@@ -82,11 +85,16 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
+<<<<<<< HEAD
         $users = User::all()->where("verified", true)->where("role", "student");
         $teachers = User::all()->where("verified", true)->where("role", "teacher");
         $data = ["course" => $course, "users" => $users, "teachers" => $teachers];
 
         return view("courses.show", $data);
+=======
+        $users = User::all()->where("verified", true);
+        return view("courses.show", ["course" => $course, "users" => $users]);
+>>>>>>> 12974a6c3b14b0a367d0d9647dfd294bb01fb326
     }
 
     /**
@@ -139,6 +147,15 @@ class CourseController extends Controller
 
         $message = "استاد مورد نظر با موفقیت به درس اضافه شد";
         return redirect()->back()->with("success_teacher", $message);
+    }
+
+    public function update_users(Request $request, Course $course) {
+        $course->users()->detach();
+        $course_users = $request->get("course_users");
+        $course->users()->attach($course_users);
+
+        $message = "با موفقیت " . count($course_users) . " کاربر به درس مورد نظر اضافه شدند" ;
+        return redirect()->back()->with("success", $message);
     }
 
     /**

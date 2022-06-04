@@ -9,7 +9,11 @@
 <div class="columns is-centered mt-6">
     <div class="column">
         <div class="box">
+<<<<<<< HEAD
             <form id="create_course_form" method="POST" action="{{route('courses.store')}}">
+=======
+            <form id="edit_user_form" method="POST" action="{{route('courses.store')}}">
+>>>>>>> 12974a6c3b14b0a367d0d9647dfd294bb01fb326
 
                 {{ csrf_field() }}
 

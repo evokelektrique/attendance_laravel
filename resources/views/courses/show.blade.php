@@ -17,7 +17,11 @@
 
 <div class="columns is-centered mt-6">
     {{-- Course Information --}}
+<<<<<<< HEAD
     <div class="column is-4">
+=======
+    <div class="column is-8">
+>>>>>>> 12974a6c3b14b0a367d0d9647dfd294bb01fb326
         <div class="box">
             <div class="is-flex mb-5">
                 <p class="ml-2">
@@ -40,7 +44,11 @@
     <div class="column is-4">
         <article class="panel is-info">
             <p class="panel-heading">
+<<<<<<< HEAD
                 دانشجویان درس
+=======
+                کاربران درس
+>>>>>>> 12974a6c3b14b0a367d0d9647dfd294bb01fb326
             </p>
             <div class="panel-block has-text-centered is-justify-content-center">
                 <p class="is-size-7 has-text-grey">
@@ -72,6 +80,7 @@
             </form>
         </article>
     </div>
+<<<<<<< HEAD
 
     <div class="column is-4">
         <article class="panel is-info">
@@ -165,5 +174,9 @@
         </table>
     </div>
 </div>
+=======
+</div>
+
+>>>>>>> 12974a6c3b14b0a367d0d9647dfd294bb01fb326
 
 @endsection
