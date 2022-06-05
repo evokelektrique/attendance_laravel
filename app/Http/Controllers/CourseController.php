@@ -62,9 +62,7 @@ class CourseController extends Controller
             "name" => "required",
             "unit" => "required",
             "description" => "required",
-
             "teacher_id" => "required",
-
         ];
 
         // Validate
@@ -91,10 +89,6 @@ class CourseController extends Controller
         $data = ["course" => $course, "users" => $users, "teachers" => $teachers];
 
         return view("courses.show", $data);
-
-        $users = User::all()->where("verified", true);
-        return view("courses.show", ["course" => $course, "users" => $users]);
-
     }
 
     /**
@@ -147,15 +141,6 @@ class CourseController extends Controller
 
         $message = "استاد مورد نظر با موفقیت به درس اضافه شد";
         return redirect()->back()->with("success_teacher", $message);
-    }
-
-    public function update_users(Request $request, Course $course) {
-        $course->users()->detach();
-        $course_users = $request->get("course_users");
-        $course->users()->attach($course_users);
-
-        $message = "با موفقیت " . count($course_users) . " کاربر به درس مورد نظر اضافه شدند" ;
-        return redirect()->back()->with("success", $message);
     }
 
     /**

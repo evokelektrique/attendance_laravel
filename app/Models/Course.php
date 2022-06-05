@@ -16,9 +16,6 @@ class Course extends Model {
 
     protected $fillable = ["name", "description", "unit", "teacher_id"];
 
-    protected $fillable = ["name", "description", "unit"];
-
-
     public function users() {
         return $this->belongsToMany(User::class, "course_user");
     }
