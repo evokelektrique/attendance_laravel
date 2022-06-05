@@ -17,7 +17,11 @@
 
 <div class="columns is-centered mt-6">
     {{-- Course Information --}}
+
     <div class="column is-4">
+
+    <div class="column is-8">
+
         <div class="box">
             <div class="is-flex mb-5">
                 <p class="ml-2">
@@ -40,7 +44,11 @@
     <div class="column is-4">
         <article class="panel is-info">
             <p class="panel-heading">
+
                 دانشجویان درس
+
+                کاربران درس
+
             </p>
             <div class="panel-block has-text-centered is-justify-content-center">
                 <p class="is-size-7 has-text-grey">
@@ -72,6 +80,7 @@
             </form>
         </article>
     </div>
+
 
     <div class="column is-4">
         <article class="panel is-info">
@@ -168,5 +177,9 @@
         </table>
     </div>
 </div>
+
+</div>
+
+
 
 @endsection

@@ -33,7 +33,11 @@
                 @forelse($courses as $course)
                 <tr>
                     <td data-label="نام">{{ $course->name }}</td>
+
                     <td data-label="واحد">{{ $course->unit }}</td>
+
+                    <td data-label="ایمیل">{{ $course->unit }}</td>
+
                     <td data-label="تاریخ ایجاد">
                         <small class="has-text-grey is-abbr-like">{{ $course->created_at->toJalali()->format('Y-m-d') }}</small>
                     </td>

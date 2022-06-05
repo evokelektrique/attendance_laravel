@@ -10,7 +10,6 @@
     <div class="columns is-centered mt-6">
         <div class="column">
             <div class="box">
-
                 {{ csrf_field() }}
 
                 <div class="mb-5 field">
