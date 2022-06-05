@@ -61,10 +61,9 @@ class CourseController extends Controller
             "name" => "required",
             "unit" => "required",
             "description" => "required",
-<<<<<<< HEAD
+
             "teacher_id" => "required",
-=======
->>>>>>> 12974a6c3b14b0a367d0d9647dfd294bb01fb326
+
         ];
 
         // Validate
@@ -85,16 +84,16 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-<<<<<<< HEAD
+
         $users = User::all()->where("verified", true)->where("role", "student");
         $teachers = User::all()->where("verified", true)->where("role", "teacher");
         $data = ["course" => $course, "users" => $users, "teachers" => $teachers];
 
         return view("courses.show", $data);
-=======
+
         $users = User::all()->where("verified", true);
         return view("courses.show", ["course" => $course, "users" => $users]);
->>>>>>> 12974a6c3b14b0a367d0d9647dfd294bb01fb326
+
     }
 
     /**

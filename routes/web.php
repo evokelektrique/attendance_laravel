@@ -24,12 +24,11 @@ Route::middleware(["auth0.authenticate"])->group(function() {
     // Courses
     Route::resource("dashboard/courses", Controllers\CourseController::class);
     Route::post("dashboard/courses/{course}/update_users", [Controllers\CourseController::class, "update_users"])->name("course.update_users");
-<<<<<<< HEAD
+
     Route::post("dashboard/courses/{course}/update_teacher", [Controllers\CourseController::class, "update_teacher"])->name("course.update_teacher");
 
     // Sessions
     Route::resource("dashboard/courses.sessions", Controllers\SessionController::class);
 
-=======
->>>>>>> 12974a6c3b14b0a367d0d9647dfd294bb01fb326
+
 });
