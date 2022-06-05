@@ -45,7 +45,7 @@
             <thead>
                 <tr>
                     <th class="has-text-right">نام</th>
-                    <th class="has-text-right">توضیحات</th>
+                    <th class="has-text-right">وضعیت</th>
                     <th class="has-text-right"></th>
                 </tr>
             </thead>
@@ -53,20 +53,28 @@
                 @forelse($course->users as $user)
                 <tr>
                     <td data-label="نام">{{ $user->name }}</td>
-                    <td data-label="توضیحات">N/A</td>
+                    <td data-label="وضعیت">
+                        @if($user->is_attended($session))
+                        <span class="tag is-success">حاظر</span>
+                        @else
+                        <span class="tag is-danger">غایب</span>
+                        @endif
+                    </td>
                     <td data-label="عملیات">
                         <div class="buttons is-right">
-                            {{-- Edit --}}
-                            <a href="{{ route("courses.sessions.show", [$course ,$session]) }}" class="button is-small is-light" type="button">مشاهده دانشجو</a>
+                            {{-- Show User --}}
+                            <a href="{{ route("users.show", $user) }}" class="button is-small is-light" type="button">مشاهده دانشجو</a>
 
-                            {{-- Show --}}
-                            <form method="POST" action="{{route("courses.sessions.destroy", [$course ,$session])}}">
-                                <button type="submit" class="button is-small is-danger jb-modal" data-target="sample-modal" type="button">حاضر</button>
+                            {{-- Present --}}
+                            <form method="POST" action="{{route("courses.sessions.present_user", [$course, $session, $user])}}">
+                                {{ csrf_field() }}
+                                <button @if($user->is_attended($session)) disabled="" @endif type="submit" class="button is-small is-dark jb-modal" data-target="sample-modal" type="button">حاضر</button>
                             </form>
 
-                            {{-- Delete --}}
-                            <form method="POST" action="{{route("courses.sessions.destroy", [$course ,$session])}}">
-                                <button type="submit" class="button is-small is-danger jb-modal" data-target="sample-modal" type="button">غایب</button>
+                            {{-- Absent --}}
+                            <form method="POST" action="{{route("courses.sessions.absent_user", [$course, $session, $user])}}">
+                                {{ csrf_field() }}
+                                <button @if(!$user->is_attended($session)) disabled="" @endif type="submit" class="button is-small is-dark jb-modal" data-target="sample-modal" type="button">غایب</button>
                             </form>
                         </div>
                     </td>

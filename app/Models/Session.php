@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Course;
+use App\Models\Attendance;
 
 class Session extends Model {
     use HasFactory;
@@ -14,5 +15,9 @@ class Session extends Model {
 
     public function course() {
         return $this->belongsTo(Course::class);
+    }
+
+    public function attendances() {
+        return $this->hasMany(Attendance::class);
     }
 }

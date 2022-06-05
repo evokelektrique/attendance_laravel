@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Session;
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Course;
+use App\Models\Session;
+use App\Models\Attendance;
 
 class SessionController extends Controller
 {
@@ -70,6 +72,7 @@ class SessionController extends Controller
      */
     public function show(Course $course, Session $session)
     {
+        // $attendances =
         return view("sessions.show", ["course" => $course, "session" => $session]);
     }
 
@@ -79,9 +82,10 @@ class SessionController extends Controller
      * @param  \App\Models\Session  $session
      * @return \Illuminate\Http\Response
      */
-    public function edit(Session $session)
+    public function edit(Course $course, Session $session)
     {
-        //
+        $data = ["course" => $course, "session" => $session];
+        return view("sessions.edit", $data);
     }
 
     /**
@@ -91,7 +95,7 @@ class SessionController extends Controller
      * @param  \App\Models\Session  $session
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Session $session)
+    public function update(Request $request, Course $course, Session $session)
     {
         //
     }
@@ -102,8 +106,43 @@ class SessionController extends Controller
      * @param  \App\Models\Session  $session
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Session $session)
+    public function destroy(Course $course, Session $session)
     {
-        //
+        $session->delete();
+
+        return redirect()->back();
+    }
+
+    /**
+     * Make a user absent
+     *
+     * @param  \App\Models\Course  $course
+     * @param  \App\Models\Session $session
+     * @param  \App\Models\User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function absent(Course $course, Session $session, User $user) {
+        $match = ["user_id" => $user->id, "session_id" => $session->id];
+        $attendance = Attendance::where($match);
+        $attendance->delete();
+
+        return redirect()->back();
+    }
+
+    /**
+     * Make a user present
+     *
+     * @param  \App\Models\Course  $course
+     * @param  \App\Models\Session $session
+     * @param  \App\Models\User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function present(Course $course, Session $session, User $user) {
+        $attendance = Attendance::firstOrCreate([
+            "user_id" => $user->id,
+            "session_id" => $session->id,
+        ]);
+
+        return redirect()->back();
     }
 }

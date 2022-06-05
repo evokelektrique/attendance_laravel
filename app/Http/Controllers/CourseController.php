@@ -45,7 +45,8 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view("courses.create");
+        $teachers = User::all()->where("verified", true)->where("role", "teacher");
+        return view("courses.create", ["teachers" => $teachers]);
     }
 
     /**
@@ -149,7 +150,8 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
+        $course->delete();
+        return redirect()->back();
     }
 
 }

@@ -77,6 +77,9 @@
         <article class="panel is-info">
             <p class="panel-heading">
                 استاد درس
+                @if(!empty($course->teacher_id))
+                "{{ $course->get_teacher()->name }}"
+                @endif
             </p>
             <div class="panel-block has-text-centered is-justify-content-center">
                 <p class="is-size-7 has-text-grey">
@@ -150,7 +153,7 @@
                             <a href="{{ route("courses.sessions.edit", [$course ,$session]) }}" class="button is-small is-info" type="button">ویرایش</a>
 
                             {{-- Delete --}}
-                            <form method="POST" action="{{route("courses.sessions.destroy", [$course ,$session])}}">
+                            <form method="POST" action="{{route("courses.sessions.destroy", [$course, $session])}}">
                                 {{ csrf_field() }}
                                 {{ method_field("DELETE") }}
                                 <button type="submit" class="button is-small is-danger jb-modal" data-target="sample-modal" type="button">حذف</button>

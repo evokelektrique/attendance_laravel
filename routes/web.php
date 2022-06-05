@@ -28,5 +28,7 @@ Route::middleware(["auth0.authenticate"])->group(function() {
 
     // Sessions
     Route::resource("dashboard/courses.sessions", Controllers\SessionController::class);
+    Route::post("dashboard/courses/{course}/sessions/{session}/present_user/{user}", [Controllers\SessionController::class, "present"])->name("courses.sessions.present_user");
+    Route::post("dashboard/courses/{course}/sessions/{session}/absent_user/{user}", [Controllers\SessionController::class, "absent"])->name("courses.sessions.absent_user");
 
 });

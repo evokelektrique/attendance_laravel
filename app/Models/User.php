@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Course;
+use App\Models\Session;
 
 class User extends Model {
     use HasFactory;
@@ -41,6 +42,20 @@ class User extends Model {
         }
 
         return "تایید شده";
+    }
+
+    /**
+     * Check if user has attended to the session
+     *
+     * @param  Session $session
+     * @return boolean
+     */
+    public function is_attended(Session $session) {
+        if($session->attendances->contains("user_id", $this->id)) {
+            return true;
+        }
+
+        return false;
     }
 
 }

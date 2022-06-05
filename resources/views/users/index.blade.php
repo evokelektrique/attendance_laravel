@@ -46,7 +46,7 @@
                             <a href="{{ route("users.edit", $user->id) }}" class="button is-small is-info" type="button">ویرایش</a>
 
                             {{-- Delete --}}
-                            <form method="POST" action="{{route("users.destroy", $user->id)}}">
+                            <form method="POST" action="{{route("users.destroy", $user)}}">
                                 {{ csrf_field() }}
                                 {{ method_field("DELETE") }}
                                 <button type="submit" class="button is-small is-danger jb-modal" data-target="sample-modal" type="button">حذف</button>
