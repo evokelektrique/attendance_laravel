@@ -5,7 +5,7 @@
 @section("content")
 
 {{-- Information --}}
-<p class="is-size-3 has-text-weight-bold">مشخصات کاربر "{{$user->name}}"</p>
+<p class="is-size-3 has-text-weight-bold has-text-centered-touch is-size-4-touch">مشخصات کاربر "{{$user->name}}"</p>
 <div class="columns is-centered mt-6">
     <div class="column is-3">
         <div class="box">LOGO</div>

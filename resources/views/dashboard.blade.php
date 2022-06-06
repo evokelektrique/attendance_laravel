@@ -8,7 +8,7 @@
 
 <div class="level">
     <div class="level-right">
-        <span class="level-item is-size-3 has-text-weight-bold mb-4">لیست درس های شما</span>
+        <span class="level-item is-size-3 has-text-weight-bold has-text-centered-touch is-size-4-touch mb-4">لیست درس های شما</span>
         <small>(واحد های اخذ شده شما طبق نظر استاد راهنمای شما می باشد)</small>
     </div>
 </div>
@@ -31,7 +31,7 @@
                     <td data-label="واحد">{{ $course->get_teacher()->name }}</td>
                 </tr>
                 @empty
-                    <p>No courses</p>
+                    <p>درسی یافت نشد</p>
                 @endforelse
             </tbody>
         </table>

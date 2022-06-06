@@ -5,7 +5,7 @@
 @section("content")
 
 {{-- Information --}}
-<p class="is-size-3 has-text-weight-bold">افزودن جلسه</p>
+<p class="is-size-3 has-text-weight-bold has-text-centered-touch is-size-4-touch">افزودن جلسه</p>
 <div class="columns is-centered mt-6">
     <div class="column">
         <div class="box">

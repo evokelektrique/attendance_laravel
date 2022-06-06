@@ -1,15 +1,16 @@
-node_modules/
-yarn - error.log
-/public/hot
-.phpunit.result.cache
-Homestead.json
-vendor
 vendor/
 npm-debug.log
-/vendor
+node_modules
+/public/hot
 .git
-/public/storage
-Homestead.yaml
+vendor
+node_modules/
+.env
+yarn - error.log
 /storage/*.key
 .env.backup
-node_modules
+Homestead.json
+/public/storage
+/vendor
+Homestead.yaml
+.phpunit.result.cache

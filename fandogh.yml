@@ -5,6 +5,39 @@ spec:
   port: 80
   source:
     context: .
-    laravel_version: '7.6'
+    laravel_version: '8.75'
     php_version: '7.4'
     project_type: laravel
+  env:
+    - name: AUTH0_DOMAIN
+      value: dev-8h-36frx.us.auth0.com
+    - name: AUTH0_CLIENT_ID
+      secret: auth0clientid
+    - name: AUTH0_CLIENT_SECRET
+      secret: auth0clientsecret
+    - name: AUTH0_AUDIENCE
+      value: https://dev-8h-36frx.us.auth0.com/api/v2/
+    - name: AUTH0_REDIRECT_URI
+      value: https://attendance-evoke.fandogh.cloud/auth0/callback
+    - name: APP_KEY
+      secret: appkey
+    - name: APP_ENV
+      value: local
+    - name: APP_DEBUG
+      value: true
+    - name: APP_URL
+      value: https://attendance-evoke.fandogh.cloud
+    - name: DB_CONNECTION
+      value: pgsql
+    - name: DB_PORT
+      value: 5432
+    - name: DB_DATABASE
+      value: attendance_db
+    - name: DB_USERNAME
+      secret: dbusername
+    - name: DB_PASSWORD
+      secret: dbpassword
+    - name: DB_HOST
+      value: attendance-db
+  resources:
+    memory: 200Mi

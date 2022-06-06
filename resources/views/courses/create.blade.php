@@ -5,7 +5,7 @@
 @section("content")
 
 {{-- Information --}}
-<p class="is-size-3 has-text-weight-bold">افزودن کتاب</p>
+<p class="is-size-3 has-text-weight-bold has-text-centered-touch is-size-4-touch">افزودن کتاب</p>
 <form id="create_course_form" method="POST" action="{{route('courses.store')}}">
     <div class="columns is-centered mt-6">
         <div class="column">

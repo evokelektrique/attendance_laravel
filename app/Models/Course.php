@@ -20,7 +20,6 @@ class Course extends Model {
         return $this->belongsToMany(User::class, "course_user");
     }
 
-
     public function sessions() {
         return $this->hasMany(Session::class);
     }

@@ -29,7 +29,7 @@ class UsersController extends Controller
     public function index(User $user) {
         $users = $this->model::all();
 
-        if(!Helper::can($this->user->id, "admin")) {
+        if(!Helper::can($this->user->id, "supervisor,admin")) {
             return redirect()->route("dashboard.index");
         }
 
@@ -65,6 +65,10 @@ class UsersController extends Controller
      */
     public function show($id)
     {
+        if(!Helper::can($this->user->id, "teacher,supervisor,admin")) {
+            return redirect()->route("dashboard.index");
+        }
+
         $user = $this->model->findOrFail($id);
 
         return view("users.show", ["user" => $user]);
@@ -78,6 +82,10 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
+        if(!Helper::can($this->user->id, "admin")) {
+            return redirect()->route("dashboard.index");
+        }
+
         $user = $this->model->findOrFail($id);
 
         return view("users.edit", ["user" => $user]);
@@ -92,7 +100,6 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         if(!Helper::can($this->user->id, "admin")) {
             return redirect()->route("dashboard.index");
         }

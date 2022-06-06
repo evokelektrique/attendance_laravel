@@ -2083,7 +2083,16 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 var date_picker_options = {
   separatorChar: "-"
 };
-jalaliDatepicker.startWatch(date_picker_options);
+jalaliDatepicker.startWatch(date_picker_options); // Navbar Burger Toggle
+
+(function () {
+  var burger = document.querySelector('.navbar-burger');
+  var menu = document.querySelector('#' + burger.dataset.target);
+  burger.addEventListener('click', function () {
+    burger.classList.toggle('is-active');
+    menu.classList.toggle('is-active');
+  });
+})();
 
 /***/ }),
 

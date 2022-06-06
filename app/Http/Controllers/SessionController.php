@@ -11,9 +11,16 @@ use App\Models\Attendance;
 class SessionController extends Controller
 {
     protected $model;
+    protected $user;
 
     public function __construct(Session $session) {
         $this->model = $session;
+
+        if(auth()->check()) {
+            // Find current logged in user by his Email
+            $user_email = auth()->user()->email;
+            $this->user = User::where("email", $user_email)->first();
+        }
     }
 
     /**
@@ -33,6 +40,10 @@ class SessionController extends Controller
      */
     public function create(Course $course)
     {
+        if(!Helper::can($this->user->id, "supervisor,admin")) {
+            return redirect()->route("dashboard.index");
+        }
+
         return view("sessions.create", ["course" => $course]);
     }
 
@@ -44,6 +55,9 @@ class SessionController extends Controller
      */
     public function store(Course $course, Request $request)
     {
+        if(!Helper::can($this->user->id, "supervisor,admin")) {
+            return redirect()->route("dashboard.index");
+        }
 
         $rules = [
             "title" => "required",
@@ -72,7 +86,10 @@ class SessionController extends Controller
      */
     public function show(Course $course, Session $session)
     {
-        // $attendances =
+        if(!Helper::can($this->user->id, "teacher,supervisor,admin")) {
+            return redirect()->route("dashboard.index");
+        }
+
         return view("sessions.show", ["course" => $course, "session" => $session]);
     }
 
@@ -84,6 +101,10 @@ class SessionController extends Controller
      */
     public function edit(Course $course, Session $session)
     {
+        if(!Helper::can($this->user->id, "supervisor,admin")) {
+            return redirect()->route("dashboard.index");
+        }
+
         $data = ["course" => $course, "session" => $session];
         return view("sessions.edit", $data);
     }
@@ -108,6 +129,10 @@ class SessionController extends Controller
      */
     public function destroy(Course $course, Session $session)
     {
+        if(!Helper::can($this->user->id, "supervisor,admin")) {
+            return redirect()->route("dashboard.index");
+        }
+
         $session->delete();
 
         return redirect()->back();
@@ -122,6 +147,10 @@ class SessionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function absent(Course $course, Session $session, User $user) {
+        if(!Helper::can($this->user->id, "teacher,supervisor,admin")) {
+            return redirect()->route("dashboard.index");
+        }
+
         $match = ["user_id" => $user->id, "session_id" => $session->id];
         $attendance = Attendance::where($match);
         $attendance->delete();
@@ -138,6 +167,10 @@ class SessionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function present(Course $course, Session $session, User $user) {
+        if(!Helper::can($this->user->id, "teacher,supervisor,admin")) {
+            return redirect()->route("dashboard.index");
+        }
+
         $attendance = Attendance::firstOrCreate([
             "user_id" => $user->id,
             "session_id" => $session->id,

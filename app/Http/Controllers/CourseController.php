@@ -31,6 +31,10 @@ class CourseController extends Controller
     {
         $courses = $this->model::all();
 
+        if(!Helper::can($this->user->id, "teacher,admin,supervisor")) {
+            return redirect()->route("dashboard.index");
+        }
+
         // if(!Helper::can($this->user->id, "admin")) {
         //     return redirect()->route("dashboard.index");
         // }
@@ -45,6 +49,11 @@ class CourseController extends Controller
      */
     public function create()
     {
+
+        if(!Helper::can($this->user->id, "admin,supervisor")) {
+            return redirect()->route("dashboard.index");
+        }
+
         $teachers = User::all()->where("verified", true)->where("role", "teacher");
         return view("courses.create", ["teachers" => $teachers]);
     }
@@ -57,6 +66,10 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
+
+        if(!Helper::can($this->user->id, "admin,supervisor")) {
+            return redirect()->route("dashboard.index");
+        }
 
         $rules = [
             "name" => "required",
@@ -84,6 +97,10 @@ class CourseController extends Controller
     public function show(Course $course)
     {
 
+        if(!Helper::can($this->user->id, "teacher,admin,supervisor")) {
+            return redirect()->route("dashboard.index");
+        }
+
         $users = User::all()->where("verified", true)->where("role", "student");
         $teachers = User::all()->where("verified", true)->where("role", "teacher");
         $data = ["course" => $course, "users" => $users, "teachers" => $teachers];
@@ -99,6 +116,11 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
+
+        if(!Helper::can($this->user->id, "admin,supervisor")) {
+            return redirect()->route("dashboard.index");
+        }
+
         return view("courses.edit", [ "course" => $course ]);
     }
 
@@ -111,6 +133,11 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
+
+        if(!Helper::can($this->user->id, "admin,supervisor")) {
+            return redirect()->route("dashboard.index");
+        }
+
         $rules = [
             "name" => "required",
             "unit" => "required",
@@ -126,15 +153,31 @@ class CourseController extends Controller
     }
 
     public function update_users(Request $request, Course $course) {
+
+        if(!Helper::can($this->user->id, "admin,supervisor")) {
+            return redirect()->route("dashboard.index");
+        }
+
         $course->users()->detach();
         $course_users = $request->get("course_users");
         $course->users()->attach($course_users);
 
-        $message = "با موفقیت " . count($course_users) . " کاربر به درس مورد نظر اضافه شدند" ;
+        $user_count = 0;
+
+        if($course_users) {
+            $user_count = count($course_users);
+        }
+
+        $message = "با موفقیت " . $user_count . " کاربر به درس مورد نظر اضافه شدند" ;
         return redirect()->back()->with("success", $message);
     }
 
     public function update_teacher(Request $request, Course $course) {
+
+        if(!Helper::can($this->user->id, "admin,supervisor")) {
+            return redirect()->route("dashboard.index");
+        }
+
         $teacher_id = $request->get("teacher_id");
         $course->teacher_id = $teacher_id;
         $course->save();
@@ -151,6 +194,10 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
+        if(!Helper::can($this->user->id, "admin")) {
+            return redirect()->route("dashboard.index");
+        }
+
         $course->delete();
         return redirect()->back();
     }

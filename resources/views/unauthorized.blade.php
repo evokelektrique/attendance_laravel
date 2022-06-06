@@ -6,7 +6,7 @@
 
 {{-- Account unauthorized/unverified message --}}
 <div class="box">
-    <p class="has-text-centered">Account is not verified</p>
+    <p class="has-text-centered">اکانت شما تایید نشده است</p>
 </div>
 
 @endsection

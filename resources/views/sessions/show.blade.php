@@ -6,7 +6,7 @@
 
 {{-- Information --}}
 
-<p class="is-size-3 has-text-weight-bold">جلسه "{{$session->title}}"</p>
+<p class="is-size-3 has-text-weight-bold has-text-centered-touch is-size-4-touch">جلسه "{{$session->title}}"</p>
 
 <div class="columns is-centered mt-6">
     <div class="column">
@@ -35,7 +35,7 @@
 
 <div class="level">
     <div class="level-right">
-        <span class="level-item is-size-3 has-text-weight-bold mb-4">حضور و غیاب دانشجویان</span>
+        <span class="level-item is-size-3 has-text-weight-bold has-text-centered-touch is-size-4-touch mb-4">حضور و غیاب دانشجویان</span>
     </div>
 </div>
 
@@ -80,7 +80,7 @@
                     </td>
                 </tr>
                 @empty
-                    <p>No session</p>
+                    <p>جلسه ای یافت نشد</p>
                 @endforelse
             </tbody>
         </table>

@@ -6,7 +6,7 @@
 
 {{-- Information --}}
 
-<p class="is-size-3 has-text-weight-bold">ویرایش کتاب "{{ $course->name }}"</p>
+<p class="is-size-3 has-text-weight-bold has-text-centered-touch is-size-4-touch">ویرایش کتاب "{{ $course->name }}"</p>
 
 <div class="columns is-centered mt-6">
     <div class="column">

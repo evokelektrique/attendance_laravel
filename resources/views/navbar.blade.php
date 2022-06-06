@@ -20,11 +20,11 @@
   <div id="header_navbar" class="navbar-menu">
     <div class="navbar-start">
       <a class="navbar-item" href="/">داشبورد</a>
-      @can("teacher")
+      @can("admin,supervisor")
       <a class="navbar-item" href="{{ route("users.index") }}">کاربران</a>
       @endcan
 
-      @can("teacher")
+      @can("teacher,admin,supervisor")
       <a class="navbar-item" href="{{ route("courses.index") }}">درس ها</a>
       @endcan
 

@@ -5,7 +5,7 @@
 @section("content")
 
 {{-- Information --}}
-<p class="is-size-3 has-text-weight-bold">مشاهده درس "{{$course->name}}"</p>
+<p class="is-size-3 has-text-weight-bold has-text-centered-touch is-size-4-touch">مشاهده درس "{{$course->name}}"</p>
 
 {{-- Notifications --}}
 @if(Session::has("success"))
@@ -119,7 +119,7 @@
 
 <div class="level">
     <div class="level-right">
-        <span class="level-item is-size-3 has-text-weight-bold mb-4">لیست جلسات</span>
+        <span class="level-item is-size-3 has-text-weight-bold has-text-centered-touch is-size-4-touch mb-4">لیست جلسات</span>
     </div>
     <div class="level-left">
         <div class="level-item">
@@ -164,7 +164,7 @@
                     </td>
                 </tr>
                 @empty
-                    <p>No session</p>
+                    <p>جلسه ای یافت نشد</p>
                 @endforelse
             </tbody>
         </table>

@@ -6,7 +6,7 @@
 
 {{-- Users List --}}
 
-<p class="is-size-3 has-text-weight-bold">لیست کاربران</p>
+<p class="is-size-3 has-text-weight-bold has-text-centered-touch is-size-4-touch">لیست کاربران</p>
 <div class="b-table mt-6">
     <div class="table-wrapper has-mobile-cards">
         <table class="table is-fullwidth is-striped is-hoverable is-fullwidth has-text-right">
@@ -55,7 +55,7 @@
                     </td>
                 </tr>
                 @empty
-                    <p>No users</p>
+                    <p>کاربری یافت نشد</p>
                 @endforelse
             </tbody>
         </table>
